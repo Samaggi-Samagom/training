@@ -1,130 +1,110 @@
 # Samaggi Git Training
 
-A small frontend exercise for practicing Git: edit an event card, save your work in commits, and submit a pull request. Allow about 30–45 minutes. Basic HTML, CSS, and JavaScript knowledge helps.
+Practice Git by making a small frontend update: change an event's details, commit your changes, and open a pull request.
 
 ## What you need
 
-- Git installed (`git --version` should show a version).
-- A code editor and a web browser.
-- A GitHub account if you want to submit a pull request.
+- Git installed. Run `git --version` in your terminal to check.
+- A GitHub account, a code editor, and a web browser.
 
-## 1. Get your own copy
+## 1. Fork and clone the repository
 
-On GitHub, click **Fork** on this repository. In your fork, click **Code** and copy the HTTPS URL. Replace `YOUR_USERNAME` below with your GitHub username:
+On GitHub, click **Fork** to create your own copy of this repository. In your fork, click **Code** and copy the HTTPS URL.
+
+Replace `YOUR_USERNAME` with your GitHub username, then run these commands one at a time:
 
 ```sh
-git clone https://github.com/YOUR_USERNAME/samaggi-training.git
-cd samaggi-training
+git clone https://github.com/YOUR_USERNAME/training.git
+cd training
 ```
 
-If the repository has a different name, use the URL from **Code** and enter the folder Git creates.
+- `git clone` downloads the repository and its Git history into a new folder called `training`.
+- `cd training` moves your terminal into that folder. Run the remaining commands there.
 
-Configure your name and email if you have not done so before. These commands apply to this repository only; use an email you are comfortable including in commits (GitHub provides a private noreply address in your email settings).
+If you have not configured Git before, replace the example name and email with yours:
 
 ```sh
 git config user.name "Your Name"
 git config user.email "YOUR_EMAIL"
 ```
 
-Create a branch for your work:
+These set the author name and email recorded in your commits for this repository. You can use your GitHub noreply email from your GitHub email settings.
+
+## 2. Create your branch
+
+Use `<your-name>` as your branch name placeholder. Replace it with your name, using lowercase letters and hyphens, such as `alex-smith`. Do not type the angle brackets.
 
 ```sh
-git switch -c feature/my-event-card
+git checkout -b <your-name>
 ```
 
-A branch keeps your changes separate from the starting version.
+`git checkout -b` creates a new branch and switches to it. A branch lets you work on your changes separately from `main`.
 
-## 2. Open the page
+For example:
 
-Open `index.html` in your browser. No packages, server, or build step are needed. After editing a file, save it and refresh the browser.
+```sh
+git checkout -b alex-smith
+```
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | Event content and page structure |
-| `styles.css` | Colors, spacing, and button styles |
-| `script.js` | RSVP button behavior |
+## 3. Make a simple frontend update
 
-The **Join event** button intentionally does nothing yet. Finishing it is part of the exercise.
+Open `index.html` in your editor and change the event's:
 
-## 3. Complete the frontend task
+- Title inside `<h1>`.
+- Date and time under **When**.
+- Location under **Where**.
 
-Make an event card for an event you would like to attend:
+Save the file, then open `index.html` in your browser. Refresh the page after any further edits and check that your new details appear. No installation or server is needed. The **Join event** button is unfinished; this exercise only needs the text changes above.
 
-1. **Content:** In `index.html`, update the event title, date, and location.
-2. **Style:** In `styles.css`, choose a new button background color and add a `button:hover:not(:disabled)` rule. Keep the text easy to read.
-3. **Behavior:** Finish the click handler in `script.js`. On click, show **You're on the list! See you there.**, change the button label to **Joined**, and disable it.
+## 4. Review and commit your changes
 
-Hints for task 3: use `rsvpMessage.textContent`, `rsvpButton.textContent`, and `rsvpButton.disabled`. This is a browser-only demo; refreshing the page resets the RSVP.
-
-Save each task in its own commit. After the content task, for example:
+Run these commands one at a time:
 
 ```sh
 git status
 git diff
-git add index.html
+git add -A
 git diff --staged
 git commit -m "Update event details"
 ```
 
-`status` lists changed files. `diff` shows edits. `add` stages the changes you want to save. `diff --staged` lets you review that selection. `commit` records it in your branch history.
+- `git status` shows your current branch and which files have changed.
+- `git diff` shows the edits that have not been staged yet. Check that they match what you intended.
+- `git add -A` stages all new, modified, and deleted files in the repository. Staging prepares changes for your next commit; it does not save a commit or upload anything. Check `git status` first so you know what you are including.
+- `git diff --staged` shows the changes prepared for the commit. Review them before continuing.
+- `git commit -m "Update event details"` saves the staged changes as a commit on your branch. The `-m` option supplies a short message describing the change.
 
-Repeat for the other two tasks:
-
-```sh
-git add styles.css
-git commit -m "Style event button and hover state"
-git add script.js
-git commit -m "Add RSVP confirmation"
-```
-
-## 4. Check your work
-
-- Your event title, date, and location appear correctly.
-- The button has your new color and changes appearance on hover.
-- Clicking it displays the exact confirmation message, changes its label, and disables it.
-- Refreshing resets the button.
-- The card fits a narrow browser window without horizontal scrolling.
-- You can reach the button with Tab and activate it with Enter or Space.
-
-Review your three commits and confirm there are no unsaved Git changes:
+Check your saved work:
 
 ```sh
-git log --oneline -3
+git log --oneline -1
 git status
 ```
 
-## 5. Share your work
+`git log --oneline -1` shows your latest commit's short ID and message. `git status` should report a clean working tree, meaning there are no remaining uncommitted changes.
 
-Push the branch to your fork:
+## 5. Push and open a pull request
 
-```sh
-git push -u origin feature/my-event-card
-```
-
-On GitHub, open your fork and click **Compare & pull request**. Set the base repository to the original training repository and the base branch to `main`. Submit a pull request titled **Complete event card exercise**. Include a short description of your changes and the checks you completed. A screenshot is optional.
-
-If a reviewer asks for changes, edit the files on the same branch, commit them, and run `git push`. The pull request updates automatically.
-
-## Useful Git commands
-
-| Command | What it does |
-| --- | --- |
-| `git status` | Check your branch and changed files |
-| `git diff` | Review unstaged edits |
-| `git diff --staged` | Review changes ready to commit |
-| `git log --oneline` | View commit history |
-| `git restore --staged styles.css` | Unstage a file while keeping your edits |
-| `git switch main` | Return to the starting branch after committing your work |
-
-## For the workshop organizer
-
-Publish this starter repository to GitHub before sharing it. Create an empty GitHub repository named `samaggi-training` without adding a README, license, or `.gitignore`. From this folder, replace `OWNER` and run:
+Replace `<your-name>` with the same branch name you created earlier:
 
 ```sh
-git add README.md index.html styles.css script.js .gitignore
-git commit -m "Add Git workshop starter"
-git remote add origin https://github.com/OWNER/samaggi-training.git
-git push -u origin main
+git push -u origin <your-name>
 ```
 
-Share the repository link and ask learners to fork it. Keep `main` as the starter exercise; learners submit their completed versions as pull requests. The event details are sample content.
+`git push` uploads your commits to GitHub. `origin` is the name Git gives your cloned repository's remote (your fork). `<your-name>` selects the branch to upload. `-u` connects your local branch to the remote branch, so future uploads from this branch only need `git push`.
+
+On GitHub, open your fork and click **Compare & pull request**. Choose the original training repository and `main` as the destination, with your fork and your named branch as the source.
+
+Give the pull request a title such as **Update event details** and briefly describe what you changed. Click **Create pull request** to submit your work for review.
+
+If you need to make another change, edit and save the file, then run:
+
+```sh
+git diff
+git add -A
+git diff --staged
+git commit -m "Adjust event details"
+git push
+```
+
+The new commit will appear in the same pull request automatically.
