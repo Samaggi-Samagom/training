@@ -1,0 +1,49 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #17233b;
+  background: #eef2f8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px;
+  display: grid;
+  place-items: center;
+}
+
+.event-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 32px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 12px 40px #17233b14;
+}
+
+.eyebrow { color: #3559a6; font-size: 0.85rem; font-weight: 700; }
+h1 { font-size: 2rem; line-height: 1.15; }
+.description { color: #536078; line-height: 1.6; }
+.event-details { margin: 24px 0; }
+.event-details div { margin-bottom: 16px; }
+dt { font-weight: 700; }
+dd { margin: 4px 0 0; color: #536078; }
+
+/* Task 2: Choose a new button color and add a hover style. */
+button {
+  width: 100%;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 10px;
+  background: #3559a6;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:focus-visible { outline: 3px solid #17233b; outline-offset: 4px; }
+button:disabled { cursor: default; opacity: 0.75; }
+.status { min-height: 1.5em; margin-bottom: 0; line-height: 1.5; }
